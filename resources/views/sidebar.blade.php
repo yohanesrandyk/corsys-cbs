@@ -1,7 +1,7 @@
 <div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">
     <div class="brand flex-column-auto" id="kt_brand">
         <a href="#" class="brand-logo">
-            {{-- logo --}}
+            <img class="mt-5" src="{{ asset('images') }}/logo-emas.png" alt="" style="width:90%;">
         </a>
         <button class="brand-toggle btn btn-sm px-0 mt-5" id="kt_aside_toggle">
             <span class="svg-icon svg-icon svg-icon-xl">
