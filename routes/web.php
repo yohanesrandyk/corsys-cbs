@@ -2,21 +2,33 @@
 
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 /*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
+|--------------------------------------------------------------------------|
+| Web Routes                                                              |
+|--------------------------------------------------------------------------|
+| Here is where you can register web routes for your application.           |
+| These routes are loaded by the RouteServiceProvider and assigned to      |
+| the "web" middleware group.                                               |
+|--------------------------------------------------------------------------|
 */
 
 Route::get('/', function () {
-    return view('login');
-});
+    return view('login'); // Default to login page when no session exists
+})->name('login');
+
+// Login POST route
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+
+// Layout route (protected)
+Route::get('/layout', function () {
+    if (!Session::has('authenticated')) {
+        return redirect()->route('login'); // Redirect to login if session is not authenticated
+    }
+    return view('layout'); // Show layout if authenticated
+})->name('layout');
+
 
 // Route::get('/', function () {
 //     return view('layout');
@@ -29,8 +41,3 @@ Route::get('/', function () {
 // });
 
 // Route::post('/login', [LoginController::class, 'login'])->name('login');
-Route::post('/login', [LoginController::class, 'login'])->name('login');
-
-Route::get('/layout', function () {
-    return view('layout');
-})->name('layout');
