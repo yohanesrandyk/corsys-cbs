@@ -1,5 +1,217 @@
-.login-form {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
+/* General Body Styles */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom right, #1c3d57, #2c6f91);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+    overflow: hidden;
+}
+
+/* Login Page Styles */
+.login-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Top Bar */
+.top-bar {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.top-bar img {
+    height: 110px;
+    animation: popIn 1.5s ease-out;
+}
+
+.left-logo {
+    height: 5%;
+    width: 15%;
+}
+
+.right-logo {
+    width: 450px;
+}
+
+
+/* Login Box Styles */
+.login-box {
+    position: fixed;
+    background: linear-gradient(to bottom right, #2e5a6e, #1f3a56, #244b66);
+    border-radius: 50%;
+    width: 500px;
+    height: 490px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    text-align: center;
+    animation: popIn 1.5s ease-out;
+}
+
+
+.logo img {
+    width: 120px;
+    margin-bottom: 20px;
+}
+
+/* Adjust label spacing */
+label {
+    display: block;
+    width: 90%;
+    margin: 0px 2px 5px;
+    font-size: 1rem;
+    color: #fff;
+    text-align: left;
+}
+
+/* Input and Select fields */
+input,
+select {
+    width: 100%;
+    padding: 15px;
+    margin: 0 auto 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.8);
+    color: #000;
+}
+
+input::placeholder {
+    color: #555;
+    font-weight: 600;
+}
+
+select:focus,
+input:focus {
+    outline: 2px solid #58a1b4;
+    background: rgba(255, 255, 255, 1);
+}
+
+input:focus,
+select:focus {
+    outline: 2px solid #58a1b4;
+}
+
+/* Password Container */
+.password-container {
+    position: relative;
+    width: 100%;
+    margin: 0 auto 5px;
+}
+
+.password-container input {
+    width: 100%;
+    padding-right: 50px;
+}
+
+.password-container .icon {
+    position: absolute;
+    top: 38%;
+    right: 20px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.password-container .icon:hover {
+    color: #3b6f7f;
+}
+
+/* Select Dropdown (Database Field) */
+select {
+    padding: 15px;
+    /* Make padding consistent */
+}
+
+select:focus {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+/* Button */
+button {
+    width: 90%;
+    padding: 15px;
+    background-color: #58a1b4;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #3b6f7f;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Custom CSS for SweetAlert */
+.my-popup-class {
+    width: 600px;
+    height: auto;
+    position: relative;
+}
+
+.my-title-class {
+    font-size: 24px;
+}
+
+.my-content-class {
+    font-size: 16px;
+}
+
+/* Footer */
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #ddd;
+    padding: 10px 0;
+}
+
+footer a {
+    color: #58a1b4;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }

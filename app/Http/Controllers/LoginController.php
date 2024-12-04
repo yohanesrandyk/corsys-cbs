@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\HttpHelper;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class LoginController extends Controller
 {
@@ -11,7 +11,7 @@ class LoginController extends Controller
     {
         switch ($status) {
             case '00':
-                return ['status' => 'success', 'message' => 'Login successful, redirecting to the dashboard.'];
+                return ['status' => 'success', 'message' => 'Login successful. Redirecting...'];
             case '01':
                 return ['status' => 'error', 'message' => 'User ID not found. Please check your credentials.'];
             case '02':
@@ -23,16 +23,12 @@ class LoginController extends Controller
 
     private function getDatabaseName($selectedDatabase)
     {
-        switch ($selectedDatabase) {
-            case 'live_system':
-                return '001';
-            case 'cetak':
-                return '002';
-            case 'bulanan':
-                return '003';
-            default:
-                return '';
-        }
+        return match ($selectedDatabase) {
+            'live_system' => '001',
+            'cetak' => '002',
+            'bulanan' => '003',
+            default => '',
+        };
     }
 
     public function login(Request $request)
@@ -43,27 +39,33 @@ class LoginController extends Controller
             'password' => 'required|string',
         ]);
 
-
         $data = [
             'userid' => $request->input('userid'),
             'password' => $request->input('password'),
-            'database' => $this->getDatabaseName($request->input('database'))
+            'database' => $this->getDatabaseName($request->input('database')),
         ];
 
-
         try {
-            $response = HttpHelper::http_post('http://servercorsys:8090/api-server-corsys-cbs/login', $data);
-            $result = $this->handleApiResponse($response['status']);
+            $response = Http::withHeaders(['Content-Type' => 'application/json'])
+                ->post('http://servercorsys:8090/api-server-corsys-cbs/login', $data);
 
-            if ($result['status'] === 'success') {
-                return redirect()->route('dashboard');
+            if ($response->successful()) {
+                $responseData = $response->json();
+                $result = $this->handleApiResponse($responseData['status']);
+
+                if ($result['status'] === 'success') {
+                    return redirect()->route('dashboard');
+                } else {
+                    session()->flash('error_message', $result['message']);
+                    return redirect()->route('login');
+                }
             } else {
-                session()->flash('error', $result['message']);
-                return redirect()->back();
+                session()->flash('error_message', 'Unable to connect to the server. Please try again later.');
+                return redirect()->route('login');
             }
         } catch (\Exception $e) {
-            session()->flash('error', 'An error occurred. Please try again later.');
-            return redirect()->back();
+            session()->flash('error_message', 'An error occurred. Please try again later.');
+            return redirect()->route('login');
         }
     }
 }

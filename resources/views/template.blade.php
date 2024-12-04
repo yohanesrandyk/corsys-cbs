@@ -46,7 +46,7 @@
 <?php } ?>
 
 
-@if (!Session::has('error'))
+@if (Session::has('error'))
     <div class="modal fade show active" id="modal-errmsg" data-backdrop="static" tabindex="-1" role="dialog"
         aria-labelledby="staticBackdrop" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">

@@ -52,7 +52,7 @@
                     @include('subheader')
                     <div class="d-flex flex-column-fluid">
                         <div class="container-fluid">
-                            @include('form')
+                            @include('dashboard')
                         </div>
                     </div>
                 </div>
