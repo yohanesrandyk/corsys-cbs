@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -33,6 +34,7 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+        // Validate input
         $request->validate([
             'database' => 'required|in:live_system,cetak,bulanan',
             'userid' => 'required|string',
@@ -46,6 +48,7 @@ class LoginController extends Controller
         ];
 
         try {
+            // Make the API request to validate credentials
             $response = Http::withHeaders(['Content-Type' => 'application/json'])
                 ->post('http://servercorsys:8090/api-server-corsys-cbs/login', $data);
 
@@ -54,10 +57,12 @@ class LoginController extends Controller
                 $result = $this->handleApiResponse($responseData['status']);
 
                 if ($result['status'] === 'success') {
-                    return redirect()->route('layout');
+                    // Set session for successful login
+                    Session::put('authenticated', true);  // Store session variable to track authentication
+                    return redirect()->route('layout'); // Redirect to layout page
                 } else {
                     session()->flash('error_message', $result['message']);
-                    return redirect()->route('login');
+                    return redirect()->route('login'); // Redirect back to login with error message
                 }
             } else {
                 session()->flash('error_message', 'Unable to connect to the server. Please try again later.');

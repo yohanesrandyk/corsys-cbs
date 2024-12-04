@@ -3,21 +3,33 @@
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Retail\ApprovalController as RetailApproval;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 /*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
+|--------------------------------------------------------------------------|
+| Web Routes                                                              |
+|--------------------------------------------------------------------------|
+| Here is where you can register web routes for your application.           |
+| These routes are loaded by the RouteServiceProvider and assigned to      |
+| the "web" middleware group.                                               |
+|--------------------------------------------------------------------------|
 */
 
 Route::get('/', function () {
-    return view('login');
-});
+    return view('login'); // Default to login page when no session exists
+})->name('login');
+
+// Login POST route
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+
+// Layout route (protected)
+Route::get('/layout', function () {
+    if (!Session::has('authenticated')) {
+        return redirect()->route('login'); // Redirect to login if session is not authenticated
+    }
+    return view('layout'); // Show layout if authenticated
+})->name('layout');
+
 
 // Route::get('/', function () {
 //     return view('layout');
@@ -41,16 +53,8 @@ Route::get('/layout', function () {
 //Retail Otorisasi
 Route::prefix('retail')->name('retail.')->group(function () {
     Route::prefix('otorisasi')->controller(RetailApproval::class)->group(function () {
-        // Route::get('/', 'view')->name('list');
-        Route::get('/', function () {
-            return view('otorisasi.list');
-        })->name('list');
-        // Route::get('/{noref}', 'getRetailOtorByNoref')->name('view');
-        // Route::post('/{noref}/approve', 'approveRetailByNoref')->name('approve');
-        // Route::post('/{noref}/reject', 'rejectRetailByNoref')->name('reject');
+        Route::get('/', 'list')->name('list');
+        Route::get('/{noref}', 'view')->name('list');
     })->name('otor');
-    // Route::get('/', 'viewRetailList')->name('list');
-    // Route::get('/{noref}', 'viewDetailRetailByNoref')->name('noref');
-    // Route::post('/approved', 'viewApprovedRetail')->name('approved');
-    // Route::post('/rejected', 'viewRejectedRetail')->name('rejected');
 });
+// Route::post('/login', [LoginController::class, 'login'])->name('login');
