@@ -15,13 +15,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('layout');
-});
-Route::get('/login', function () {
     return view('login');
 });
-Route::get('/login_', function () {
-    return view('login_');
-});
+
+// Route::get('/', function () {
+//     return view('layout');
+// });
+// Route::get('/login', function () {
+//     return view('login');
+// });
+// Route::get('/login_', function () {
+//     return view('login_');
+// });
+
 // Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
+
+Route::get('/layout', function () {
+    return view('layout');
+})->name('layout');

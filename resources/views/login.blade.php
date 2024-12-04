@@ -58,29 +58,29 @@
     </div>
 
     <!-- SweetAlert for error message -->
-    @if (session('error_message'))
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Login Failed',
-                    text: "{{ session('error_message') }}",
-                    confirmButtonText: 'OK',
-                    backdrop: false,
-                    customClass: {
-                        popup: 'my-popup-class',
-                        title: 'my-title-class',
-                        content: 'my-content-class'
-                    },
-                    showClass: {
-                        popup: ''
-                    },
-                    hideClass: {
-                        popup: ''
-                    }
-                });
+    @if(session('error_message'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Login Failed',
+                text: "{{ session('error_message') }}",
+                confirmButtonText: 'OK',
+                backdrop: false,
+                customClass: {
+                    popup: 'my-popup-class',
+                    title: 'my-title-class',
+                    content: 'my-content-class'
+                },
+                showClass: {
+                    popup: ''
+                },
+                hideClass: {
+                    popup: ''
+                }
             });
-        </script>
+        });
+    </script>
     @endif
 
     <!-- Particles.js -->

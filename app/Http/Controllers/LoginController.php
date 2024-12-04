@@ -54,7 +54,7 @@ class LoginController extends Controller
                 $result = $this->handleApiResponse($responseData['status']);
 
                 if ($result['status'] === 'success') {
-                    return redirect()->route('dashboard');
+                    return redirect()->route('layout');
                 } else {
                     session()->flash('error_message', $result['message']);
                     return redirect()->route('login');
