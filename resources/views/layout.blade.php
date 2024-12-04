@@ -52,7 +52,8 @@
                     @include('subheader')
                     <div class="d-flex flex-column-fluid">
                         <div class="container-fluid">
-                            @include('dashboard')
+                            {{-- @include('dashboard') --}}
+                            @yield('content')
                         </div>
                     </div>
                 </div>
@@ -61,6 +62,5 @@
         </div>
     </div>
 </body>
-
 
 </html>

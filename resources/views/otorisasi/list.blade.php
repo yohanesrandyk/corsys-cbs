@@ -1,5 +1,5 @@
 @extends('layout')
 
 @section('content')
-	Disini dashboard
+	Disini halaman list
 @endsection

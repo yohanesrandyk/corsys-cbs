@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Retail\ApprovalController as RetailApproval;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,5 +33,24 @@ Route::get('/', function () {
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 
 Route::get('/layout', function () {
-    return view('layout');
+    return view('dashboard');
 })->name('layout');
+
+
+
+//Retail Otorisasi
+Route::prefix('retail')->name('retail.')->group(function () {
+    Route::prefix('otorisasi')->controller(RetailApproval::class)->group(function () {
+        // Route::get('/', 'view')->name('list');
+        Route::get('/', function () {
+            return view('otorisasi.list');
+        })->name('list');
+        // Route::get('/{noref}', 'getRetailOtorByNoref')->name('view');
+        // Route::post('/{noref}/approve', 'approveRetailByNoref')->name('approve');
+        // Route::post('/{noref}/reject', 'rejectRetailByNoref')->name('reject');
+    })->name('otor');
+    // Route::get('/', 'viewRetailList')->name('list');
+    // Route::get('/{noref}', 'viewDetailRetailByNoref')->name('noref');
+    // Route::post('/approved', 'viewApprovedRetail')->name('approved');
+    // Route::post('/rejected', 'viewRejectedRetail')->name('rejected');
+});
