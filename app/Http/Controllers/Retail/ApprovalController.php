@@ -10,6 +10,8 @@ class ApprovalController extends Controller
     //
     public function list()
     {
+        // $kdcab = session()->get('kdcab');
+        // $userid = session()->get('userdata')->USERID;
         return view('otorisasi.list');
     }
 
