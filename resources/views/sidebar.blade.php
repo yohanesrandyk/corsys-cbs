@@ -70,11 +70,12 @@
                 </li>
                 <br>
                 <li class="m-item menu-item" aria-haspopup="true">
-                    <a href="#" class="menu-link ">
+                    <a href="{{ route('logout') }}" class="menu-link" onclick="return confirm('Apakah Anda yakin ingin keluar?')">
                         <span class="fas fa-sign-out-alt menu-icon "></span>
                         <span class="menu-text font-weight-bold ">KELUAR</span>
                     </a>
                 </li>
+
             </ul>
         </div>
     </div>

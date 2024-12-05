@@ -73,4 +73,46 @@ class LoginController extends Controller
             return redirect()->route('login');
         }
     }
+
+    public function showLoginPage()
+    {
+        $dayOfWeek = date('N'); // Get numeric representation of the day of the week (1 for Monday through 7 for Sunday)
+
+        // Map days to CSS class names
+        $BodyClasses = [
+            1 => 'body_monday',
+            2 => 'body_tuesday',
+            3 => 'body_wednesday',
+            4 => 'body_thursday',
+            5 => 'body_friday',
+            6 => 'body_saturday',
+            7 => 'body_sunday'
+        ];
+
+        $LoginBoxClasses = [
+            1 => 'loginbox_monday',
+            2 => 'loginbox_tuesday',
+            3 => 'loginbox_wednesday',
+            4 => 'loginbox_thursday',
+            5 => 'loginbox_friday',
+            6 => 'loginbox_saturday',
+            7 => 'loginbox_sunday'
+        ];
+
+        $ButtonClasses = [
+            1 => 'button_monday',
+            2 => 'button_tuesday',
+            3 => 'button_wednesday',
+            4 => 'button_thursday',
+            5 => 'button_friday',
+            6 => 'button_saturday',
+            7 => 'button_sunday'
+        ];
+
+        $BodyBackgroundClass = $BodyClasses[$dayOfWeek];
+        $LoginBoxBackgroundClass = $LoginBoxClasses[$dayOfWeek];
+        $ButtonBackgroundClass = $ButtonClasses[$dayOfWeek];
+
+        return view('login', compact('BodyBackgroundClass', 'LoginBoxBackgroundClass', 'ButtonBackgroundClass')); // Pass variable to view
+    }
 }
