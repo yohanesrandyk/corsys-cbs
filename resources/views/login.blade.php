@@ -12,7 +12,7 @@
 </head>
 
 
-<body>
+<body class="{{ $BodyBackgroundClass }}">
     <!-- Particles.js container -->
     <div id="particles-js" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0;"></div>
 
@@ -22,7 +22,7 @@
             <img src="{{ asset('images/Corsys-Logo.png') }}" alt="Corsys Logo" class="right-logo">
         </div>
 
-        <div class="login-box">
+        <div class="login-box {{ $LoginBoxBackgroundClass }}">
             <div class="logo">
                 <img src="{{ asset('images/Corsys-Bank.png') }}" alt="Company Logo">
             </div>
@@ -47,8 +47,7 @@
                         <i id="toggle-icon" class="fa fa-eye"></i> <!-- Ensure FontAwesome is included -->
                     </span>
                 </div>
-
-                <button type="submit">Login</button>
+                <button type="submit" class="{{ $ButtonBackgroundClass }}">Login</button>
             </form>
         </div>
 
@@ -98,7 +97,7 @@
             },
             particles: {
                 number: {
-                    value: 60,
+                    value: 50,
                     density: {
                         enable: true,
                         area: 800
@@ -111,19 +110,19 @@
                     type: "circle"
                 },
                 opacity: {
-                    value: 0.7
+                    value: 0.8
                 },
                 size: {
                     value: {
                         min: 3,
-                        max: 7
+                        max: 6
                     }
                 },
                 links: {
                     enable: true,
                     distance: 130,
                     color: "#808080",
-                    opacity: 0.4,
+                    opacity: 0.8,
                     width: 1
                 },
                 move: {

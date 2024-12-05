@@ -2,7 +2,7 @@
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(to bottom right, #1c3d57, #2c6f91);
+    /* background: linear-gradient(to bottom right, #1c3d57, #2c6f91, #3b7a9c, #4a8db2, #2c6f91, #1c3d57); */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,6 +10,96 @@ body {
     color: white;
     overflow: hidden;
 }
+
+/* Body Background Gradients */
+.body_monday {
+    background: linear-gradient(to bottom right, #2b4a51, #3a6f63, #4d8d7f, #5d9f8b, #3a6f63, #2b4a51); /* Monday: Softer, Darker Green gradient */
+}
+
+.body_tuesday {
+    background: linear-gradient(to bottom left, #3c5d61, #4d6e7a, #61868f, #738b99, #4d6e7a, #3c5d61); /* Tuesday: Muted Teal with more contrast */
+}
+
+.body_wednesday {
+    background: linear-gradient(to bottom right, #1c3d57, #2c6f91, #3b7a9c, #4a8db2, #2c6f91, #1c3d57); /* Wednesday: Blue gradient */
+}
+
+.body_thursday {
+    background: linear-gradient(to bottom left, #3e5b6d, #4e6f80, #608a96, #71a3b0, #4e6f80, #3e5b6d); /* Thursday: Darker, Muted Steel Blue gradient */
+}
+
+.body_friday {
+    background: linear-gradient(to bottom right, #571c3d, #911c2c, #9a3b3b, #b24a4a, #911c2c, #571c3d); /* Friday: Red gradient */
+}
+
+.body_saturday {
+    background: linear-gradient(to bottom left, #1c3b3b, #1e7c7c, #2a9494, #3aafaf, #2a9494, #1e7c7c); /* Darker Teal gradient */
+}
+
+.body_sunday {
+    background: linear-gradient(to bottom right, #3e5b48, #4d7c5f, #658d70, #7a9e82, #4d7c5f, #3e5b48); /* Sunday: Darker yet vibrant green gradient */
+}
+
+/* Login Box Background Gradients */
+.loginbox_monday {
+    background: linear-gradient(to left, #2c5b60, #396e74, #467f86, #396e74, #2c5b60);
+}
+
+.loginbox_tuesday {
+    background: linear-gradient(to left, #2e5056, #3b6570, #497585, #3b6570, #2e5056);
+}
+
+.loginbox_wednesday {
+    background: linear-gradient(to left, #2e5a6e, #244b66, #1f3a56, #244b66, #2e5a6e);
+}
+
+.loginbox_thursday {
+    background: linear-gradient(to left, #33495e, #3f5d72, #4b7085, #3f5d72, #33495e);
+}
+
+.loginbox_friday {
+    background: linear-gradient(to left, #692238, #8c1e2d, #9a353c, #8c1e2d, #692238);
+}
+
+.loginbox_saturday {
+    background: linear-gradient(to left, #256464, #329d99, #3ba7a7, #329d99, #256464);
+}
+
+.loginbox_sunday {
+    background: linear-gradient(to left, #345642, #436b57, #527f6a, #436b57, #345642);
+}
+
+/* Button Background Colors */
+.button_monday {
+    background-color: #2e7a6c; /* Darker green for contrast */
+}
+
+.button_tuesday {
+    background-color: #4a7380; /* Muted steel blue */
+}
+
+.button_wednesday {
+    background-color: #226e8c; /* Richer, contrasting blue */
+}
+
+.button_thursday {
+    background-color: #4b788a; /* Slightly deeper steel blue */
+}
+
+.button_friday {
+    background-color: #a54242; /* Vibrant red for emphasis */
+}
+
+.button_saturday {
+    background-color: #2e8c8c; /* Stronger teal tone */
+}
+
+.button_sunday {
+    background-color: #4d7f60; /* Contrasting vibrant green */
+}
+
+
+
 
 /* Login Page Styles */
 .login-page {
@@ -63,7 +153,7 @@ body {
 /* Login Box Styles */
 .login-box {
     position: fixed;
-    background: linear-gradient(to bottom right, #2e5a6e, #1f3a56, #244b66);
+    /* background: linear-gradient(to left, #2e5a6e, #244b66, #1f3a56, #244b66, #2e5a6e); */
     border-radius: 50%;
     width: 500px;
     height: 490px;
@@ -166,7 +256,7 @@ select:focus {
 button {
     width: 90%;
     padding: 15px;
-    background-color: #58a1b4;
+    /* background-color: #58a1b4; */
     color: white;
     border: none;
     border-radius: 25px;
