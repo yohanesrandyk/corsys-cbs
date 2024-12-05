@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Retail\ApprovalController as RetailApproval;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
@@ -56,4 +57,20 @@ Route::get('/', function () {
 //     return view('login_');
 // });
 
+// Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+
+Route::get('/layout', function () {
+    return view('dashboard');
+})->name('layout');
+
+
+
+//Retail Otorisasi
+Route::prefix('retail')->name('retail.')->group(function () {
+    Route::prefix('otorisasi')->controller(RetailApproval::class)->group(function () {
+        Route::get('/', 'list')->name('list');
+        Route::get('/{noref}', 'view')->name('list');
+    })->name('otor');
+});
 // Route::post('/login', [LoginController::class, 'login'])->name('login');
