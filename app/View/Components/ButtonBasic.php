@@ -13,16 +13,18 @@ class ButtonBasic extends Component
      */
     public $style;
     public $type;
+    public $buttonType;
     public $action;
     public $id;
     public $disable;
-    public function __construct($style = '', $type = 'primary', $action = '', $id = null, $disable = false)
+    public function __construct($style = '', $type = 'primary', $action = '', $id = null, $disable = false, $buttonType = 'button')
     {
         $this->style = $style;
         $this->type = $type;
         $this->action = $action;
         $this->id = $id;
         $this->disable = $disable;
+        $this->buttonType = $buttonType;
     }
 
     /**

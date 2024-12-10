@@ -10,6 +10,7 @@
 @endphp
 
 <button class="{{ $style }}" @if (!empty($id) && $id !== false) id="{{ $id }}" @endif
-	@if (!empty($disable) && $disable === true) disabled @endif {{ $action }}>
+	@if (!empty($disable) && $disable === true) disabled @endif @if (!empty($buttonType)) type="{{ $buttonType }}" @endif
+	{{ $action }}>
 	{{ $slot }}
 </button>
