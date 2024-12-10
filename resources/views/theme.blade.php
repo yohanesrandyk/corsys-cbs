@@ -6,7 +6,7 @@
     type="text/css" />
 <link href="{{ asset('themes') }}/metronic/html/demo1/dist/assets/css/themes/layout/aside/dark.css" rel="stylesheet"
     type="text/css" />
-
+    <link href="{{ asset('custom/css/dashboard.css') }}" rel="stylesheet" type="text/css">
 <script>
     var KTAppSettings = {
         "breakpoints": {

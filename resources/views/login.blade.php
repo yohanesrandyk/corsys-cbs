@@ -32,8 +32,8 @@
                 @csrf
                 <label for="database">Connect Database</label>
                 <select id="database" name="database" required>
-                    <option value="live_system">Live System</option>
-                    <option value="cetak">Cetak</option>
+                    <option value="postgre">Postgre</option>
+                    <option value="oracle">Oracle</option>
                     <option value="bulanan">Bulanan</option>
                 </select>
 

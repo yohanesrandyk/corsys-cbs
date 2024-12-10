@@ -4,6 +4,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Retail\ApprovalController as RetailApproval;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,8 +28,11 @@ Route::get('/layout', function () {
     if (!Session::has('authenticated')) {
         return redirect()->route('login'); // Redirect to login if not authenticated
     }
-    return view('layout'); // Show the layout if authenticated
+    return redirect()->route('dashboard'); // Redirect to dashboard if authenticated
 })->name('layout');
+
+// Route to get pendingRowsCount (VIEW_PENDING_OTOR)
+Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->name('dashboard');
 
 // Logout route
 Route::get('/logout', function () {
@@ -42,11 +46,6 @@ Route::get('/', function () {
 });
 
 
-
-
-
-
-
 // Route::get('/', function () {
 //     return view('layout');
 // });
@@ -56,13 +55,6 @@ Route::get('/', function () {
 // Route::get('/login_', function () {
 //     return view('login_');
 // });
-
-// Route::post('/login', [LoginController::class, 'login'])->name('login');
-Route::post('/login', [LoginController::class, 'login'])->name('login');
-
-Route::get('/layout', function () {
-    return view('dashboard');
-})->name('layout');
 
 
 

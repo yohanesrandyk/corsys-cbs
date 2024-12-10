@@ -10,5 +10,11 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
+    // public function dashboard()
+    // {
+    //     $data = $this->getApiData();
 
+    //     // Pass the data to the view
+    //     return view('dashboard', compact('data'));
+    // }
 }
