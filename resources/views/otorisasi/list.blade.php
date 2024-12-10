@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-	<div class="table-responsive">
+	{{-- <div class="table-responsive">
 		<table class="table">
 			<thead>
 				<tr class="fw-bold fs-6 text-gray-800">
@@ -39,5 +39,7 @@
 				</tr>
 			</tbody>
 		</table>
-	</div>
+	</div> --}}
+	<script src="{{ asset('js/scripts.bundle.js') }}"></script>
+	@include('inc.Retail.ListOtor')
 @endsection

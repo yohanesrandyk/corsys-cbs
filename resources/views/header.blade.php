@@ -16,11 +16,12 @@
 					OTORISASI HARI INI
 				</x-button-basic>
 				<x-button-link url="/login">
-					LOGIN
+					OPEN LINK
 				</x-button-link>
 				<x-button-link url="/login" target="_blank">
-					LOGIN NEW TAB
+					LINK NEW TAB
 				</x-button-link>
+
 			</div>
 		</div>
 		<div class="topbar">
