@@ -34,6 +34,70 @@ return [
     */
 
     'connections' => [
+        // Corsys Custom Database
+        // Live
+        'live' => [
+            'driver' => 'oracle',
+            'host' => env('LIVE_DB_HOST', 'localhost'),
+            'port' => env('LIVE_DB_PORT', '1521'),
+            'database' => env('LIVE_DB_DATABASE', 'CORSYS_MAA'),
+            'service_name' => env('LIVE_DB_SERVICE', 'ORCL'),
+            'username' => env('LIVE_DB_USERNAME', 'CORSYS_MAA'),
+            'password' => env('LIVE_DB_PASSWORD', 'corsys'),
+            'charset' => '',
+            'prefix' => '',
+        ],
+        // Cetak
+        'cetak' => [
+            'driver' => 'oracle',
+            'host' => env('LIVE_DB_HOST', 'localhost'),
+            'port' => env('LIVE_DB_PORT', '1521'),
+            'database' => env('LIVE_DB_DATABASE', 'CORSYS_MAA'),
+            'service_name' => env('LIVE_DB_SERVICE', 'ORCL'),
+            'username' => env('LIVE_DB_USERNAME', 'CORSYS_MAA'),
+            'password' => env('LIVE_DB_PASSWORD', 'corsys'),
+            'charset' => '',
+            'prefix' => '',
+        ],
+        // Bulanan
+        'bulanan' => [
+            'driver' => 'oracle',
+            'host' => env('LIVE_DB_HOST', 'localhost'),
+            'port' => env('LIVE_DB_PORT', '1521'),
+            'database' => env('LIVE_DB_DATABASE', 'CORSYS_MAA'),
+            'service_name' => env('LIVE_DB_SERVICE', 'ORCL'),
+            'username' => env('LIVE_DB_USERNAME', 'CORSYS_MAA'),
+            'password' => env('LIVE_DB_PASSWORD', 'corsys'),
+            'charset' => '',
+            'prefix' => '',
+        ],
+        // Development
+        'development' => [
+            'driver' => 'oracle',
+            'host' => env('LIVE_DB_HOST', 'localhost'),
+            'port' => env('LIVE_DB_PORT', '1521'),
+            'database' => env('LIVE_DB_DATABASE', 'CORSYS_MAA'),
+            'service_name' => env('LIVE_DB_SERVICE', 'ORCL'),
+            'username' => env('LIVE_DB_USERNAME', 'CORSYS_MAA'),
+            'password' => env('LIVE_DB_PASSWORD', 'corsys'),
+            'charset' => '',
+            'prefix' => '',
+        ],
+        // Postgree
+        'postgree' => [
+            'driver' => 'pgsql',
+            'url' => env('POSTGREE_DATABASE_URL'),
+            'host' => env('POSTGREE_DB_HOST', '127.0.0.1'),
+            'port' => env('POSTGREE_DB_PORT', '5432'),
+            'database' => env('POSTGREE_DB_DATABASE', 'forge'),
+            'username' => env('POSTGREE_DB_USERNAME', 'forge'),
+            'password' => env('POSTGREE_DB_PASSWORD', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'search_path' => 'public',
+            'sslmode' => 'prefer',
+        ],
 
         'sqlite' => [
             'driver' => 'sqlite',
@@ -125,7 +189,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_database_'),
         ],
 
         'default' => [

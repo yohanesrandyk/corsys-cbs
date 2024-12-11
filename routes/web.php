@@ -5,6 +5,7 @@ use App\Http\Controllers\Retail\ApprovalController as RetailApproval;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FixedAsset\AssetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,5 +65,15 @@ Route::prefix('retail')->name('retail.')->group(function () {
         Route::get('/', 'list')->name('list');
         Route::get('/{noref}', 'view')->name('list');
     })->name('otor');
+});
+
+// Fixed Asset
+Route::prefix('fixed-asset')->name('fixaset.')->group(function () {
+    Route::prefix('aset')->controller(AssetController::class)->group(function () {
+        Route::get('/barcode', 'getBarcode')->name('barcode');
+        Route::get('/last-number', 'getLastNoref')->name('lastnoref');
+    })->name('otor');
+
+
 });
 // Route::post('/login', [LoginController::class, 'login'])->name('login');

@@ -11,9 +11,11 @@ class MenuSection extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public $text;
+    public function __construct($text = '')
     {
         //
+        $this->text = $text;
     }
 
     /**

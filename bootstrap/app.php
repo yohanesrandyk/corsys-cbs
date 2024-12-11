@@ -25,7 +25,7 @@ $app = new Illuminate\Foundation\Application(
 | incoming requests to this application from both the web and CLI.
 |
 */
-
+// $app->register(Yajra\Oci8\Oci8ServiceProvider::class);
 $app->singleton(
     Illuminate\Contracts\Http\Kernel::class,
     App\Http\Kernel::class
@@ -41,6 +41,8 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
+// $app->withFacades();
+// $app->withEloquent();
 /*
 |--------------------------------------------------------------------------
 | Return The Application

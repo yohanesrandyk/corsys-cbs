@@ -26,16 +26,27 @@
 		<div id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1"
 			data-menu-dropdown-timeout="500">
 			<ul class="menu-nav">
+				{{-- 
+                X Sidebar Menu :
+                menu-icon       : 
+                    Flaticon        : https://preview.keenthemes.com/metronic/demo1/features/icons/flaticon.html
+                    Fontawesome     : https://preview.keenthemes.com/metronic/demo1/features/icons/fontawesome5.html
+                    Lineawesome     : https://preview.keenthemes.com/metronic/demo1/features/icons/lineawesome.html
+                    Socicons        : https://preview.keenthemes.com/metronic/demo1/features/icons/socicons.html
+                submenu         : sub (jika menu terdapat submenu)
+                menu-text       : Dapat diisi text bebas
+                menu-style      : CSS Style (contoh : )
+                url             : Laravel Route/Static Rotue
+                --}}
 				<x-sidebar.menu menu-icon="fas fa-th-large" menu-text='DASHBOARD' />
-				<x-sidebar.menu-section>MENU UTAMA</x-sidebar.menu-section>
+				<x-sidebar.menu-section text="MENU UTAMA" />
 				<x-sidebar.menu submenu="sub" menu-text="MENU UTILITY" menu-icon="fas fa-cogs menu-icon" menu-style="">
 					<x-sidebar.menu menu-icon="fas fa-code-branch text-danger" menu-style="text-danger"
 						menu-text="TAHAPAN PROSES KREDIT" />
 					<x-sidebar.menu menu-icon="fas fa-user-lock" menu-text="HAK AKSES USER" />
 				</x-sidebar.menu>
 				<x-sidebar.menu url="{{ route('logout') }}" menu-icon="fas fa-sign-out-alt"
-					onclick="return confirm('Apakah Anda yakin ingin keluar?')" menu-text='
-					KELUAR'>
+					onclick="return confirm('Apakah Anda yakin ingin keluar?')" menu-text='KELUAR'>
 				</x-sidebar.menu>
 				{{-- <x-sidebar.menu-section>Teller</x-sidebar.menu-section>
 				<x-sidebar.menu-section>Back Office</x-sidebar.menu-section>
@@ -43,7 +54,7 @@
 				<x-sidebar.menu-section>Kredit</x-sidebar.menu-section>
 				<x-sidebar.menu-section>Laporan</x-sidebar.menu-section>
 				<x-sidebar.menu-section>Utility dan Parameter</x-sidebar.menu-section> --}}
-				<x-sidebar.menu-section>Fixed Asset</x-sidebar.menu-section>
+				<x-sidebar.menu-section text="Fixed Asset" />
 			</ul>
 
 		</div>
