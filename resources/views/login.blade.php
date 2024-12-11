@@ -26,27 +26,14 @@
 				<img src="{{ asset('images/Corsys-Bank.png') }}" alt="Company Logo">
 			</div>
 
-<<<<<<< HEAD
-            <!-- Login Form -->
-            <form method="POST" action="{{ route('login') }}">
-                @csrf
-                <label for="database">Connect Database</label>
-                <select id="database" name="database" required>
-                    <option value="postgre">Postgre</option>
-                    <option value="oracle">Oracle</option>
-                    <option value="bulanan">Bulanan</option>
-                </select>
-=======
-			<!-- Login Form -->
 			<form method="POST" action="{{ route('login') }}">
 				@csrf
 				<label for="database">Connect Database</label>
 				<select id="database" name="database" required>
-					<option value="live_system">Live System</option>
-					<option value="cetak">Cetak</option>
+					<option value="postgre">Postgre</option>
+					<option value="oracle">Oracle</option>
 					<option value="bulanan">Bulanan</option>
 				</select>
->>>>>>> 3069a3e2520b234b6248e60f46856f8f988c5fce
 
 				<label for="userId">User ID</label>
 				<input id="userId" name="userid" type="text" placeholder="Enter User ID" required>
@@ -58,10 +45,10 @@
 						<i id="toggle-icon" class="fa fa-eye"></i> <!-- Ensure FontAwesome is included -->
 					</span>
 				</div>
-				<x-button-basic>
+				<x-button-basic button-type='submit' :style="$ButtonBackgroundClass">
 					Login
 				</x-button-basic>
-				<button type="submit" class="{{ $ButtonBackgroundClass }}">Login</button>
+
 			</form>
 		</div>
 

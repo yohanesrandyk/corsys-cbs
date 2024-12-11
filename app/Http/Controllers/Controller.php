@@ -18,7 +18,7 @@ class Controller extends BaseController
     public function __construct()
     {
         $this->kdcab = session()->get('kdcab') ?: '001';
-        $this->dbConnect = session()->get('dbca') ?: 'live';
+        $this->dbConnect = session()->get('dbca') ?: 'oracle';
         $this->db = DB::connection($this->dbConnect);
     }
 
