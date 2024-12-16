@@ -61,7 +61,8 @@
 				<div class="topbar-item" data-toggle="dropdown">
 					<div class="btn btn-icon btn-icon-mobile btn-clean d-flex align-items-center btn-lg w-auto px-2"
 						id="kt_quick_user_toggle">
-						<span class="font-weight-bold font-size-base d-none d-md-inline mr-1">Hi, X</span>
+						<span class="font-weight-bold font-size-base d-none d-md-inline mr-1">Hi,
+							{{ session()->get('userid') ?: 'Admin' }}</span>
 						<span class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3"></span>
 						<span class="symbol symbol-lg-35 symbol-25">
 							<img

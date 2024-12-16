@@ -29,6 +29,12 @@ return [
     */
 
     'disks' => [
+        'ftp' => [
+            'driver' => 'ftp',
+            'host' => env('FTP_HOST', 'localhost'),
+            'username' => env('FTP_USERNAME', 'corsys'),
+            'password' => env('FTP_PASSWORD', 'intisoft123**'),
+        ],
 
         'local' => [
             'driver' => 'local',
@@ -39,7 +45,7 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
             'throw' => false,
         ],

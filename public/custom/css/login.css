@@ -149,12 +149,44 @@ body {
 
 
 /* Login Box Styles */
+.box {
+    border-radius: 50%;
+    background: linear-gradient(to right,
+            #833ab400, #fd1d1d86);
+    -webkit-mask: radial-gradient(transparent 89px, #000 90px);
+    mask: radial-gradient(transparent 266px, #000 260px);
+    position: absolute;
+    animation: spiral 14s linear infinite;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    padding: 2px;
+}
+
+.box:before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+@keyframes spiral {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(3600deg);
+    }
+}
+
+
+
 .login-box {
     position: fixed;
-    /* background: linear-gradient(to left, #2e5a6e, #244b66, #1f3a56, #244b66, #2e5a6e); */
+    background: linear-gradient(to left, #2e5a6e, #244b66, #1f3a56, #244b66, #2e5a6e);
     border-radius: 50%;
     width: 500px;
-    height: 490px;
+    height: 500px;
     padding: 20px;
     display: flex;
     flex-direction: column;

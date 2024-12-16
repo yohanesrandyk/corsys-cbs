@@ -3,74 +3,46 @@
 namespace App\Http\Controllers\FixedAsset;
 
 use App\Http\Controllers\Controller;
+use App\Models\FixedAsset\Asset;
 use Illuminate\Http\Request;
 
 class AssetController extends Controller
 {
+    public function index()
+    {
+        $db = session()->get('database');
+        // $kdcab = session()->get();
+        $asetList = Asset::db($db)->listAsset();
+        return view('fixedasset.aset.index', compact('asetList'));
+    }
+
+    public function barcode(Request $request)
+    {
+        $db = session()->get('database');
+        $aset = Asset::db($db)->getAssetById('001', $request->barcode);
+        return view('fixedasset.aset.barcode', compact('aset'));
+    }
+
+    public function indexDelete()
+    {
+
+    }
     //
     public function getLastNoref()
     {
-        $sqlNou = $this->db->select("SELECT MAX(NOREF) AS terakhir FROM(
-                SELECT NOREF FROM RETSIT WHERE MID(NOREF,0,16) = '" . "FIX-" . $this->kdcab . "-" . date("dmY") . "'
-                UNION ALL
-                SELECT NOREF FROM RETSITO WHERE MID(NOREF,0,16) = '" . "FIX-" . $this->kdcab . "-" . date("dmY") . "')
-                ");
-        $lastID = $sqlNou[0]->terakhir;
-        $lastNoUrut = substr($lastID, 16);
-        if (empty($lastNoUrut)) {
-            $lastNoUrut = '00000';
-        }
-        $nextNoUrut = $lastNoUrut + 1;
-        $noref = "FIX-" . $this->kdcab . "-" . date("dmY") . sprintf("%04s", $nextNoUrut);
+        $noref = Asset::db('live')->lastNoref('001');
         return $noref;
     }
 
     public function getBarcode($kdid = '00000')
     {
-        $sql = $this->db->select("SELECT MAX(QRCODE) TERAKHIR
-			FROM(
-			SELECT QRCODE FROM RETSIT
-			WHERE MID(RETSIT.QRCODE,2,3) = '" . $this->kdcab . "' AND MID(RETSIT.QRCODE,5,3)  = '" . substr($kdid, 0, 3) . "'
-			UNION ALL
-			SELECT QRCODE FROM RETSITO
-			WHERE MID(RETSITO.QRCODE,2,3) = '" . $this->kdcab . "' AND MID(RETSITO.QRCODE,5,3)  = '" . substr($kdid, 0, 3) . "'
-		)");
-        $row = $sql[0];
-        $lastID = $row->terakhir;
-        $lastNoUrut = substr($lastID, 7, 5);
-        if (empty($lastNoUrut)) {
-            $lastNoUrut = '00000';
-        }
-        $next = $lastNoUrut + 1;
-        $nextID = sprintf("%05s", $next);
-        $KODENYA = "1" . $this->kdcab . substr($kdid, 0, 3) . $nextID . "";
-        $ean = 0;
-        for ($i = 0; $i < 12; $i++) {
-            $multiplier = ($i % 2 == 0) ? 1 : 3;
-            $ean += substr($KODENYA, $i, 1) * $multiplier;
-        }
-        $sisa = $ean % 10;
-        if ($sisa == 0) {
-            $sisa = 10;
-        }
-        $checksum = 10 - $sisa;
-        $KODENYA = "1" . $this->kdcab . substr($kdid, 0, 3) . $nextID . $checksum . "";
-        return $KODENYA;
+        $barcode = Asset::db('live')->getBarcode('001', '0000');
+        return $barcode;
     }
 
     public function listApproval()
     {
-        $sql = "SELECT RETSITO.MERK MERK,RETSITO.NOAC,RETSITO.NOREF,RETSITO.NOID,RETSITO.TCD,RETSITO.KDID,RETSITO.KET,RETSITO.TGLVAL,RETSITO.JKWKT,RETSITO.KDCAB,RETSITO.NIK,RETSITO.DEPT,RETSITO.NILAI,RETSITO.SISAAMOR,TBLTCD.TNM,SANDI_BI.KETERANGAN,SHDBLC.ALIASNM CNM,RETSITO.STATUS,RETSITO.STSSI,RETSITO.FILE_UPLOAD,AMOR_PENDING,SISAAMOR_SBL,AMOR_PENDINGSBL,KONDISI.KONDISI,KONDISI.ID,DEPARTMENT.DESCRIPTION,KRWPNJM.NAMA_LENGKAP,RETSITO.ALASAN,RETSITO.QRCODE,RETSITO.USRID,RETSITO.NLPERUBAHAN
-		FROM RETSITO INNER JOIN TBLTCD ON RETSITO.TCD = TBLTCD.TRN_CODE
-		LEFT OUTER JOIN SANDI_BI ON RETSITO.KDID = SANDI_BI.KD_SANDI AND KD_BI = 'SI'
-		LEFT OUTER JOIN SHDBLC ON RETSITO.NOAC = SHDBLC.NOAC
-		LEFT OUTER JOIN KONDISI ON RETSITO.STSSI = KONDISI.ID
-		LEFT OUTER JOIN DEPARTMENT ON RETSITO.DEPT = DEPARTMENT.DEPTCODE
-		LEFT OUTER JOIN KRWPNJM ON RETSITO.NIK = KRWPNJM.NIK
-		WHERE RETSITO.KDCAB = '" . $this->kdcab . "'
-		ORDER BY RETSITO.QRCODE ASC";
-        $que = $this->db->select($sql);
-        return $que;
+
     }
 
     public function listApprovalByID($barcode)

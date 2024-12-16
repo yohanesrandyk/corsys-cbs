@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FixedAsset\AssetController;
+use App\Http\Controllers\FileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,10 +71,22 @@ Route::prefix('retail')->name('retail.')->group(function () {
 // Fixed Asset
 Route::prefix('fixed-asset')->name('fixaset.')->group(function () {
     Route::prefix('aset')->controller(AssetController::class)->group(function () {
-        Route::get('/barcode', 'getBarcode')->name('barcode');
+        Route::get('/', 'index')->name('index');
+        Route::get('/input', 'input')->name('input');
+        Route::get('/{barcode}', 'barcode')->name('barcode');
+        Route::get('/{barcode}/edit', 'edit')->name('edit');
+
+        Route::get('/barcode', 'getBarcode')->name('getBarcode');
         Route::get('/last-number', 'getLastNoref')->name('lastnoref');
     })->name('otor');
-
-
 });
+
 // Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::prefix('/docs')->name('docs.')->controller(FileController::class)->group(function () {
+    Route::get('/image/{filename}', 'showImage')
+        ->name('image')
+        ->where('filename', '.*');
+    Route::get('/download/{encodedFilename}', 'downloadFile')
+        ->name('downloadDocs')
+        ->where('encodedFilename', '.*');
+});
