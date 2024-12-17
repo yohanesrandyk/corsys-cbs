@@ -45,9 +45,7 @@
 						menu-text="TAHAPAN PROSES KREDIT" />
 					<x-sidebar.menu menu-icon="fas fa-user-lock" menu-text="HAK AKSES USER" />
 				</x-sidebar.menu>
-				<x-sidebar.menu url="{{ route('logout') }}" menu-icon="fas fa-sign-out-alt"
-					onclick="return confirm('Apakah Anda yakin ingin keluar?')" menu-text='KELUAR'>
-				</x-sidebar.menu>
+
 				{{-- <x-sidebar.menu-section>Teller</x-sidebar.menu-section>
 				<x-sidebar.menu-section>Back Office</x-sidebar.menu-section>
 				<x-sidebar.menu-section>Deposito</x-sidebar.menu-section>
@@ -55,6 +53,16 @@
 				<x-sidebar.menu-section>Laporan</x-sidebar.menu-section>
 				<x-sidebar.menu-section>Utility dan Parameter</x-sidebar.menu-section> --}}
 				<x-sidebar.menu-section text="Fixed Asset" />
+				<x-sidebar.menu submenu="sub" menu-text="Aset Inventaris" menu-icon="fas fa-cogs menu-icon" menu-style="">
+					<x-sidebar.menu :url="route('fixaset.index')" menu-icon="fas fa-code-branch text-danger" menu-style="text-danger"
+						menu-text="Daftar Aset" />
+					<x-sidebar.menu :url="route('fixaset.input')" menu-icon="fas fa-code-branch text-danger" menu-style="text-danger"
+						menu-text="Input Aset" />
+				</x-sidebar.menu>
+				<x-sidebar.menu-section text="Session" />
+				<x-sidebar.menu url="{{ route('logout') }}" menu-icon="fas fa-sign-out-alt"
+					onclick="return confirm('Apakah Anda yakin ingin keluar?')" menu-text='KELUAR'>
+				</x-sidebar.menu>
 			</ul>
 
 		</div>

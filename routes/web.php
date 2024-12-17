@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FixedAsset\AssetController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\FixedAsset\QrCodeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,6 +81,10 @@ Route::prefix('fixed-asset')->name('fixaset.')->group(function () {
         Route::get('/last-number', 'getLastNoref')->name('lastnoref');
     })->name('otor');
 });
+
+Route::get('/qrcode/scanner', [QrCodeController::class, 'scanner']);
+
+Route::get('/qrcode/{barcode}', [QrCodeController::class, 'qrcode']);
 
 // Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::prefix('/docs')->name('docs.')->controller(FileController::class)->group(function () {

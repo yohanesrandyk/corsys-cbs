@@ -2,7 +2,7 @@
 @section('content')
 	<link href="{{ asset('custom/css/datatable.min.css') }}" rel="stylesheet" type="text/css" />
 
-	<div class="table-responsive container">
+	<div class="table-responsive">
 		<table class="table-striped table-hover display table-row-bordered gy-5 table" id="fixaset_listaset">
 			<thead class="table-primary">
 				<tr class="fw-semibold fs-6">
@@ -10,7 +10,6 @@
 					<th scope="col">Nama Aset dan Inventaris</th>
 					<th scope="col">Kondisi</th>
 					<th scope="col">No Referensi</th>
-					<th scope="col">QR Code</th>
 					<th scope="col">Nilai Aset</th>
 					<th scope="col">Nilai Awal</th>
 					<th scope="col">Action</th>
@@ -25,7 +24,11 @@
 						<td>{{ $aset->noref }}</td>
 						<td class="text-right">@rupiah($aset->nlperubahan)</td>
 						<td class="text-right">@rupiah($aset->nilai)</td>
-						<td><x-button-link type="light-primary" :url="route('fixaset.barcode', $aset->qrcode)">Lihat</x-button-link></td>
+						<td>
+							<x-button-link type="primary" :url="route('fixaset.barcode', $aset->qrcode)">Lihat</x-button-link>
+							<x-qr-modal :nama-aset="$aset->ket" text="QR Code" :barcode='$aset->qrcode' onclick="barcode('{{ $aset->qrcode }}'')">
+							</x-qr-modal>
+						</td>
 					</tr>
 				@endforeach
 
@@ -37,5 +40,22 @@
 		$(document).ready(function() {
 			$('#fixaset_listaset').DataTable();
 		});
+
+		function barcode(barcode) {
+			$.ajax({
+				url: '/api/qrcode/' + barcode,
+				method: 'GET',
+				success: function(response) {
+					// window.open('/api/qrcode/' + barcode, '_blank');
+					$('#modal' + barcode + ' .modal-body').html(response);
+
+				},
+				error: function(xhr) {
+					console.error(xhr.responseText);
+				}
+			});
+
+
+		}
 	</script>
 @endsection
