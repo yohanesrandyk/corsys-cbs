@@ -32,7 +32,7 @@
 						<td class="helvetica text-right">@rupiah($aset->nilai)</td>
 						<td>
 							<x-button-link type="primary" :url="route('fixaset.barcode', $aset->qrcode)">Lihat</x-button-link>
-							<x-qr-modal :nama-aset="$aset->ket" text="QR Code" :barcode='$aset->qrcode' onclick="barcode('{{ $aset->qrcode }}'')">
+							<x-qr-modal :nama-aset="$aset->ket" text="QR Code" :barcode='$aset->qrcode' :onclick=true>
 							</x-qr-modal>
 						</td>
 					</tr>
