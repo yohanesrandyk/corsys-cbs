@@ -1,7 +1,7 @@
 <div id="kt_header" class="header header-fixed">
 	<div class="container-fluid d-flex align-items-stretch justify-content-between">
 		<div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
-			<div class="d-flex">
+			<div class="mt-4">
 				{{-- Ini untuk contoh, untuk keseragaman silahkan ganti dengan type yang sama	 --}}
 				<x-button-basic type="light">
 					GANTI KODE CABANG

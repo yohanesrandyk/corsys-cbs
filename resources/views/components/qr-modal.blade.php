@@ -1,5 +1,6 @@
 <!-- Button trigger modal-->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal{{ $barcode }}"
+<button type="button" class="btn btn-primary @if (!$onclick) hidden @endif" data-toggle="modal"
+	data-target="#modal{{ $barcode }}"
 	@if ($onclick) onclick="barcode('{{ $barcode }}')" @endif>
 	{{ $text }}
 </button>

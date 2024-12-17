@@ -25,9 +25,12 @@ Route::prefix('fixed-asset')->name('api.fixaset.')->group(function () {
 		Route::get('/data-kelompok', 'apiDataKelompok')->name('index');
 		Route::get('/input', 'input')->name('input');
 
+
+
 		Route::get('/barcode', 'getBarcode')->name('barcode');
 		Route::get('/last-number', 'getLastNoref')->name('lastnoref');
 	})->name('otor');
+	Route::get('/qrcode/{barcode}', [QrCodeController::class, 'getData'])->name('qrcode');
 });
 
 
@@ -39,4 +42,3 @@ Route::get('/qrcode/{barcode}', function ($barcode) {
 	return response($svg);
 
 })->name('apiQrCode');
-Route::get('/qrcode2/{barcode}', [QrCodeController::class, 'getData'])->name('qrcode2');

@@ -2,22 +2,22 @@
 
 @section('content')
 	<style>
-		#my-qr-reader {
+		.scan #my-qr-reader {
 			padding: 20px !important;
 			border: 1.5px solid #b2b2b2 !important;
 			border-radius: 8px;
 		}
 
-		#my-qr-reader img[alt="Info icon"] {
+		.scan #my-qr-reader img[alt="Info icon"] {
 			display: none;
 		}
 
-		#my-qr-reader img[alt="Camera based scan"] {
+		.scan #my-qr-reader img[alt="Camera based scan"] {
 			width: 100px !important;
 			height: 100px !important;
 		}
 
-		button {
+		.scan button {
 			padding: 10px 20px;
 			border: 1px solid #b2b2b2;
 			outline: none;
@@ -31,23 +31,23 @@
 			transition: 0.3s background-color;
 		}
 
-		button:hover {
+		.scan button:hover {
 			background-color: #008000;
 		}
 
-		#html5-qrcode-anchor-scan-type-change {
+		.scan #html5-qrcode-anchor-scan-type-change {
 			text-decoration: none !important;
 			color: #1d9bf0;
 		}
 
-		video {
+		.scan video {
 			width: 100% !important;
 			border: 1px solid #b2b2b2 !important;
 			border-radius: 0.25em;
 		}
 	</style>
 	<script src="https://unpkg.com/html5-qrcode"></script>
-	<div class="container">
+	<div class="scan">
 		<h1>Scan QR Codes</h1>
 		<div class="section">
 			<div id="my-qr-reader">
@@ -82,7 +82,7 @@
 			let htmlscanner = new Html5QrcodeScanner(
 				"my-qr-reader", {
 					fps: 10,
-					qrbos: 250
+					qrbojjx: 450
 				}
 			);
 			htmlscanner.render(onScanSuccess);
@@ -90,10 +90,11 @@
 
 		function barcode(barcode) {
 			$.ajax({
-				url: '/api/qrcode2/' + barcode,
+				url: '/api/fixed-asset/qrcode/' + barcode,
 				method: 'GET',
 				success: function(response) {
 					$('#modalscan .modal-body').html(response);
+					$('#html5-qrcode-button-camera-stop').click();
 
 				},
 				error: function(xhr) {

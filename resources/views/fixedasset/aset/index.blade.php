@@ -7,7 +7,11 @@
 		}
 	</style>
 	<link href="{{ asset('custom/css/datatable.min.css') }}" rel="stylesheet" type="text/css" />
-
+	<div class="container">
+		<x-button-link :url="route('fixaset.scan')">
+			Scan Qr Code
+		</x-button-link>
+	</div>
 	<div class="table-responsive">
 		<table class="table-striped table-hover display table-row-bordered gy-5 table" id="fixaset_listaset">
 			<thead class="table-primary">
@@ -16,8 +20,8 @@
 					<th scope="col">Nama Aset dan Inventaris</th>
 					<th scope="col">Kondisi</th>
 					<th scope="col">No Referensi</th>
-					<th scope="col">Nilai Aset</th>
-					<th scope="col">Nilai Awal</th>
+					<th scope="col text-right">Nilai Aset</th>
+					<th scope="col text-right">Nilai Awal</th>
 					<th scope="col">Action</th>
 				</tr>
 			</thead>
@@ -49,19 +53,15 @@
 
 		function barcode(barcode) {
 			$.ajax({
-				url: '/api/qrcode2/' + barcode,
+				url: '/api/fixed-asset/qrcode/' + barcode,
 				method: 'GET',
 				success: function(response) {
-					// window.open('/api/qrcode/' + barcode, '_blank');
 					$('#modal' + barcode + ' .modal-body').html(response);
-
 				},
 				error: function(xhr) {
 					console.error(xhr.responseText);
 				}
 			});
-
-
 		}
 	</script>
 @endsection
