@@ -1,6 +1,6 @@
 <!-- Button trigger modal-->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal{{ $barcode }}"
-	onclick="barcode('{{ $barcode }}')">
+	@if ($onclick) onclick="barcode('{{ $barcode }}')" @endif>
 	{{ $text }}
 </button>
 
@@ -14,14 +14,14 @@
 					<i aria-hidden="true" class="ki ki-close"></i>
 				</button>
 			</div>
-			<div class="modal-body d-flex justify-content-center">
+			<div class="modal-body">
 				<div class="spinner-border" role="status">
 					<span class="sr-only">Loading...</span>
 				</div>
 
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-light-danger font-weight-bold" data-dismiss="modal">Close</button>
 				<a href="{{ route('fixaset.barcode', $barcode) }}">
 					<button type="button" class="btn btn-primary font-weight-bold">
 						Print

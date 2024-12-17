@@ -1,5 +1,11 @@
 @extends('layout')
 @section('content')
+	<style>
+		.helvetica {
+			font-family: 'Helvetica', 'Arial', sans-serif;
+			color: #444444;
+		}
+	</style>
 	<link href="{{ asset('custom/css/datatable.min.css') }}" rel="stylesheet" type="text/css" />
 
 	<div class="table-responsive">
@@ -22,8 +28,8 @@
 						<td>{{ $aset->ket }}</td>
 						<td>{{ $aset->kondisi }}</td>
 						<td>{{ $aset->noref }}</td>
-						<td class="text-right">@rupiah($aset->nlperubahan)</td>
-						<td class="text-right">@rupiah($aset->nilai)</td>
+						<td class="helvetica text-right">@rupiah($aset->nlperubahan)</td>
+						<td class="helvetica text-right">@rupiah($aset->nilai)</td>
 						<td>
 							<x-button-link type="primary" :url="route('fixaset.barcode', $aset->qrcode)">Lihat</x-button-link>
 							<x-qr-modal :nama-aset="$aset->ket" text="QR Code" :barcode='$aset->qrcode' onclick="barcode('{{ $aset->qrcode }}'')">
@@ -43,7 +49,7 @@
 
 		function barcode(barcode) {
 			$.ajax({
-				url: '/api/qrcode/' + barcode,
+				url: '/api/qrcode2/' + barcode,
 				method: 'GET',
 				success: function(response) {
 					// window.open('/api/qrcode/' + barcode, '_blank');

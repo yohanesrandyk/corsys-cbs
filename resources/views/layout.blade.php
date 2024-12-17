@@ -7,8 +7,10 @@
 	<title>CorSys CBS</title>
 	<link rel="shortcut icon" href="{{ asset('themes') }}/images/favicon.png" />
 	<meta name="description" content="" />
-
 	@include('theme')
+
+	<script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
+	{{-- @vite('resources/js/app.js') --}}
 </head>
 
 <body id="kt_body"
@@ -61,6 +63,7 @@
 			</div>
 		</div>
 	</div>
+	@stack('scripts')
 </body>
 
 </html>

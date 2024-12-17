@@ -82,8 +82,8 @@ Route::prefix('fixed-asset')->name('fixaset.')->group(function () {
     })->name('otor');
 });
 
+Route::get('/qrcode/scanner2', [QrCodeController::class, 'scanner2']);
 Route::get('/qrcode/scanner', [QrCodeController::class, 'scanner']);
-
 Route::get('/qrcode/{barcode}', [QrCodeController::class, 'qrcode']);
 
 // Route::post('/login', [LoginController::class, 'login'])->name('login');

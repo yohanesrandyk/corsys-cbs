@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FixedAsset\AssetController;
+use App\Http\Controllers\FixedAsset\QrCodeController;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 /*
 |--------------------------------------------------------------------------
@@ -33,9 +34,9 @@ Route::prefix('fixed-asset')->name('api.fixaset.')->group(function () {
 Route::get('/qrcode/{barcode}', function ($barcode) {
 	$svg = QrCode::size(350)
 		->style('round')
-		->merge('https://corsys.co.id/logo.png', 0.3, true)
+		// ->gradient(42, 64, 182, 30, 112, 233, 'vertical')
 		->generate(route('fixaset.barcode', $barcode));
-
 	return response($svg);
 
-});
+})->name('apiQrCode');
+Route::get('/qrcode2/{barcode}', [QrCodeController::class, 'getData'])->name('qrcode2');

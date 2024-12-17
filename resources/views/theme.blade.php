@@ -8,7 +8,6 @@
 	type="text/css" />
 <link href="{{ asset('custom/css/dashboard.css') }}" rel="stylesheet" type="text/css" />
 <link href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css" rel="stylesheet" type="text/css" />
-{{-- <link href="https://cdn.datatables.net/2.1.8/css/dataTables.tailwindcss.min.css" rel="stylesheet" type="text/css" /> --}}
 <script>
 	var KTAppSettings = {
 		"breakpoints": {
@@ -72,5 +71,4 @@
 {{-- https://preview.keenthemes.com/metronic/theme/html/demo1/dist/assets/plugins/global/plugins.bundle.js --}}
 <script src="{{ asset('themes') }}/metronic/html/demo1/dist/assets/plugins/global/plugins.bundle.js"></script>
 <script src="{{ asset('themes') }}/metronic/html/demo1/dist/assets/js/scripts.bundle.js"></script>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>

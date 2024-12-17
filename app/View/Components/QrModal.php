@@ -14,13 +14,15 @@ class QrModal extends Component
     public $barcode;
     public $namaAset;
     public $text;
+    public $onclick;
 
-    public function __construct($barcode, $namaAset = '', $text = 'QR Code')
+    public function __construct($barcode, $namaAset = '', $text = 'QR Code', $onclick = false)
     {
         //
         $this->barcode = $barcode;
         $this->namaAset = $namaAset;
         $this->text = $text;
+        $this->onclick = $onclick;
     }
 
     /**
