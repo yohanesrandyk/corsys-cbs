@@ -31,14 +31,15 @@ Route::prefix('fixed-asset')->name('api.fixaset.')->group(function () {
 		Route::get('/last-number', 'getLastNoref')->name('lastnoref');
 	})->name('otor');
 	Route::get('/qrcode/{barcode}', [QrCodeController::class, 'getData'])->name('qrcode');
+	Route::get('/barcode/{barcode}', function ($barcode) {
+		$svg = QrCode::size(350)
+			->style('round')
+			// ->gradient(42, 64, 182, 30, 112, 233, 'vertical')
+			->generate(route('fixaset.barcode', $barcode));
+		return response($svg);
+
+	})->name('barcode');
 });
 
 
-Route::get('/qrcode/{barcode}', function ($barcode) {
-	$svg = QrCode::size(350)
-		->style('round')
-		// ->gradient(42, 64, 182, 30, 112, 233, 'vertical')
-		->generate(route('fixaset.barcode', $barcode));
-	return response($svg);
 
-})->name('apiQrCode');

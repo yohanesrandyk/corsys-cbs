@@ -29,10 +29,10 @@ class DashboardController extends Controller
             // Call the API to get the dashboard data
             $response = Http::withHeaders(['Content-Type' => 'application/json'])
                 ->post('http://servercorsys:8090/api-server-corsys-cbs/dashboard/data', $data);
-            
+
             if ($response->successful()) {
                 $result = $response->json();  // Get the full response as an array
-                
+
                 // Check if 'data' and 'VIEW_PENDING_OTOR' exist in the response
                 if (isset($result['data']['VIEW_PENDING_OTOR'])) {
                     $pendingRowsCount = count($result['data']['VIEW_PENDING_OTOR']);

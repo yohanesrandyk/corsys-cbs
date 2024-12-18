@@ -46,6 +46,7 @@
 			border-radius: 0.25em;
 		}
 	</style>
+	<button id="_fullscreen" class="hidden">Go Fullscreen</button>
 	<script src="https://unpkg.com/html5-qrcode"></script>
 	<div class="scan">
 		<h1>Scan QR Codes</h1>
@@ -54,10 +55,9 @@
 			</div>
 		</div>
 	</div>
-	<x-qr-modal nama-aset="Aset Inventaris" text="QR Code" barcode='scan' :onclick=false>
+	<x-qr-modal nama-aset="Aset Inventaris" text="QR Code" barcode='scan'>
 	</x-qr-modal>
 	<script>
-		// inisiasi html5QRCodeScanner
 		function domReady(fn) {
 			if (
 				document.readyState === "complete" ||
@@ -70,19 +70,15 @@
 		}
 
 		domReady(function() {
-
-			// If found you qr code
 			function onScanSuccess(decodeText, decodeResult) {
 				var barcoded = decodeText.split('aset/')[1];
 				barcode(barcoded);
 				console.log(barcoded)
 				$('#modalscan').modal('show');
 			}
-
 			let htmlscanner = new Html5QrcodeScanner(
 				"my-qr-reader", {
 					fps: 10,
-					qrbojjx: 450
 				}
 			);
 			htmlscanner.render(onScanSuccess);
@@ -95,13 +91,11 @@
 				success: function(response) {
 					$('#modalscan .modal-body').html(response);
 					$('#html5-qrcode-button-camera-stop').click();
-
 				},
 				error: function(xhr) {
 					console.error(xhr.responseText);
 				}
 			});
-
 		}
 	</script>
 @endsection

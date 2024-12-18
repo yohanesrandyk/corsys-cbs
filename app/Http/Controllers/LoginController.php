@@ -33,50 +33,50 @@ class LoginController extends Controller
     }
 
     public function login(Request $request)
-{
-    // Validate input
-    $request->validate([
-        'database' => 'required|in:postgre,oracle,bulanan',
-        'userid' => 'required|string',
-        'password' => 'required|string',
-    ]);
+    {
+        // Validate input
+        $request->validate([
+            'database' => 'required|in:postgre,oracle,bulanan',
+            'userid' => 'required|string',
+            'password' => 'required|string',
+        ]);
 
-    $data = [
-        'userid' => $request->input('userid'),
-        'password' => $request->input('password'),
-        'database' => $this->getDatabaseName($request->input('database')),
-    ];
+        $data = [
+            'userid' => $request->input('userid'),
+            'password' => $request->input('password'),
+            'database' => $this->getDatabaseName($request->input('database')),
+        ];
 
-    try {
-        // Make the API request to validate credentials
-        $response = Http::withHeaders(['Content-Type' => 'application/json'])
-            ->post('http://servercorsys:8090/api-server-corsys-cbs/login', $data);
+        try {
+            // Make the API request to validate credentials
+            $response = Http::withHeaders(['Content-Type' => 'application/json'])
+                ->post('http://servercorsys:8090/api-server-corsys-cbs/login', $data);
 
-        if ($response->successful()) {
-            $responseData = $response->json();
-            $result = $this->handleApiResponse($responseData['status']);
+            if ($response->successful()) {
+                $responseData = $response->json();
+                $result = $this->handleApiResponse($responseData['status']);
 
-            if ($result['status'] === 'success') {
-                // Set session for successful login
-                Session::put('authenticated', true);  // Store session variable to track authentication
-                Session::put('userid', $request->input('userid'));  // Store the userid
-                Session::put('password', $request->input('password'));  // Store the password
-                Session::put('database', $this->getDatabaseName($request->input('database')));  // Store the selected database
+                if ($result['status'] === 'success') {
+                    // Set session for successful login
+                    Session::put('authenticated', true);  // Store session variable to track authentication
+                    Session::put('userid', $request->input('userid'));  // Store the userid
+                    Session::put('password', $request->input('password'));  // Store the password
+                    Session::put('database', $this->getDatabaseName($request->input('database')));  // Store the selected database
 
-                return redirect()->route('layout'); // Redirect to layout page
+                    return redirect()->route('layout'); // Redirect to layout page
+                } else {
+                    session()->flash('error_message', $result['message']);
+                    return redirect()->route('login'); // Redirect back to login with error message
+                }
             } else {
-                session()->flash('error_message', $result['message']);
-                return redirect()->route('login'); // Redirect back to login with error message
+                session()->flash('error_message', 'Unable to connect to the server. Please try again later.');
+                return redirect()->route('login');
             }
-        } else {
-            session()->flash('error_message', 'Unable to connect to the server. Please try again later.');
+        } catch (\Exception $e) {
+            session()->flash('error_message', 'An error occurred. Please try again later.');
             return redirect()->route('login');
         }
-    } catch (\Exception $e) {
-        session()->flash('error_message', 'An error occurred. Please try again later.');
-        return redirect()->route('login');
     }
-}
 
 
     public function showLoginPage()

@@ -1,8 +1,7 @@
 <!-- Button trigger modal-->
-<button type="button" class="btn btn-primary @if (!$onclick) hidden @endif" data-toggle="modal"
-	data-target="#modal{{ $barcode }}"
-	@if ($onclick) onclick="barcode('{{ $barcode }}')" @endif>
-	{{ $text }}
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal{{ $barcode }}"
+	@if ($onclick) onclick="{{ $onclick }}" @endif>
+	{!! $text !!}
 </button>
 
 <div class="modal fade" id="modal{{ $barcode }}" tabindex="-1" role="dialog"
@@ -22,14 +21,19 @@
 
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-light-danger font-weight-bold" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-light-danger font-weight-bold me-auto" data-dismiss="modal">
+					<i class='icon-xl la la-times'></i>
+					Close
+				</button>
 				<a href="{{ route('fixaset.barcode', $barcode) }}">
 					<button type="button" class="btn btn-primary font-weight-bold">
+						<i class='icon-xl la la-print'></i>
 						Print
 					</button>
 				</a>
 				<a href="{{ route('fixaset.barcode', $barcode) }}">
 					<button type="button" class="btn btn-primary font-weight-bold">
+						<i class='icon-xl la la-download'></i>
 						Download
 					</button>
 				</a>
